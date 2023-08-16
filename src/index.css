@@ -1,13 +1,49 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+html,
+body,
+#root {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #bad9ff;
+	transition: 1s ease-out;
+}
+
+canvas {
+	transition: 4s ease-in;
+}
+
+button {
+	position: absolute;
+	background-color: #bad9ff;
+	color: #2b8aff;
+	border: 5px dotted #2b8aff;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 1.6rem;
+	font-weight: 600;
+	padding: 10px 20px;
+	transition: 0.15s ease-in;
+}
+
+button:hover {
+	border: 6px solid #2b8aff;
+	font-size: 1.7rem;
+	font-weight: 900;
+	border-radius: 5px;
+	box-shadow: rgba(43, 138, 255, 0.4) 5px 5px, rgba(43, 138, 255, 0.3) 10px 10px, rgba(43, 138, 255, 0.2) 15px 15px,
+		rgba(43, 138, 255, 0.1) 20px 20px, rgba(43, 138, 255, 0.05) 25px 25px;
 }
