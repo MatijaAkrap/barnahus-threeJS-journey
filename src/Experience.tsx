@@ -1,5 +1,4 @@
 import { OrbitControls, OrthographicCamera } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
 import { Suspense, useState } from 'react';
 import Scene from './models/Scene';
 
@@ -14,7 +13,7 @@ const Experience = () => {
 
 	return (
 		<>
-			<Perf position='top-left' />
+			{/* <Perf position='top-left' /> */}
 			<OrthographicCamera makeDefault position={[5, 5, 5]} zoom={window.innerHeight / 5} near={4} far={10} />
 			<OrbitControls
 				makeDefault
