@@ -65,12 +65,14 @@ const Hammer = (props: IHammer) => {
 				props.hammer.children[2].children[0].rotation.z += delta * 3.5;
 				props.hammer.children[2].children[0].children[0].rotation.z += delta * 3.5;
 			}
-			if (Number(props.hammer.children[2].children[0].rotation.z.toFixed(1)) === 0.2) {
+			if (Number(props.hammer.children[2].children[0].rotation.z.toFixed(1)) < 0.2) {
 				moveJointsUp = false;
+				props.hammer.children[2].children[0].rotation.z = 0.2;
 			}
-			if (Number(props.hammer.children[2].children[0].rotation.z.toFixed(1)) === 1.4 && !moveJointsUp) {
+			if (Number(props.hammer.children[2].children[0].rotation.z.toFixed(1)) > 1.4 && !moveJointsUp) {
 				moveJoints = false;
 				moveJointsUp = true;
+				props.hammer.children[2].children[0].rotation.z = 1.4;
 			}
 		}
 	});
