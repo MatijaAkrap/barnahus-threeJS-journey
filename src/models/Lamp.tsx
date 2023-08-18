@@ -51,6 +51,8 @@ const Lamp = (props: ILamp) => {
 				intensity={0.6}
 				angle={Math.PI / 6}
 				color='white'
+				shadow-camera-near={0.1}
+				shadow-camera-far={10}
 			/>
 			<primitive
 				scale={0.006}

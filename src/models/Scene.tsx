@@ -12,7 +12,9 @@ interface IScene {
 }
 
 const Scene = (props: IScene) => {
-	const barnahus: any = useGLTF('./Scene/barnahus.gltf');
+	const barnahus: any = useGLTF('./Scene/barnahus-draco.glb');
+	console.log(barnahus);
+
 	barnahus.scene.traverse((obj: any) => {
 		if (obj.isMesh) {
 			if (
