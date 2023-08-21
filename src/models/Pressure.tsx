@@ -48,23 +48,36 @@ const Pressure = (props: IPressure) => {
 	};
 
 	useFrame((state, delta) => {
-		props.pressure.children[4].children[0].scale.x -= 0.004 * animationIntensity;
-		props.pressure.children[4].children[0].scale.y -= 0.004 * animationIntensity;
-		props.pressure.children[4].children[0].scale.z -= 0.004 * animationIntensity;
-		props.pressure.children[4].children[0].scale.x += 0.004 * previousAnimationIntensity;
-		props.pressure.children[4].children[0].scale.y += 0.004 * previousAnimationIntensity;
-		props.pressure.children[4].children[0].scale.z += 0.004 * previousAnimationIntensity;
+		if (props.pressure.children[5].scale.y < 6.5) {
+			props.pressure.children[4].children[0].scale.x -= 0.004 * animationIntensity * (delta * 70);
+			props.pressure.children[4].children[0].scale.y -= 0.004 * animationIntensity * (delta * 70);
+			props.pressure.children[4].children[0].scale.z -= 0.004 * animationIntensity * (delta * 70);
 
-		props.pressure.children[5].scale.y += 0.15 * animationIntensity * (delta * 70);
-		props.pressure.children[5].scale.y -= 0.15 * previousAnimationIntensity * (delta * 70);
-		props.pressure.children[5].position.y += 1.38 * animationIntensity * (delta * 70);
-		props.pressure.children[5].position.y -= 1.38 * previousAnimationIntensity * (delta * 70);
+			props.pressure.children[5].scale.y += 0.15 * animationIntensity * (delta * 70);
+			props.pressure.children[5].position.y += 1.38 * animationIntensity * (delta * 70);
+		}
+
+		if (props.pressure.children[4].children[0].scale.x < 1) {
+			props.pressure.children[4].children[0].scale.x += 0.004 * previousAnimationIntensity * (delta * 70);
+			props.pressure.children[4].children[0].scale.y += 0.004 * previousAnimationIntensity * (delta * 70);
+			props.pressure.children[4].children[0].scale.z += 0.004 * previousAnimationIntensity * (delta * 70);
+		}
+
+		if (props.pressure.children[5].scale.y > 0) {
+			props.pressure.children[5].scale.y -= 0.15 * previousAnimationIntensity * (delta * 70);
+			props.pressure.children[5].position.y -= 1.38 * previousAnimationIntensity * (delta * 70);
+		}
+		if (props.pressure.children[5].scale.y < 0) {
+			props.pressure.children[5].scale.y = 0.1;
+			props.pressure.children[5].position.y = -50.7;
+		}
 	});
 
 	useEffect(() => {
-		props.pressure.children[4].children[0].position.z -= 10;
-		props.pressure.children[4].children[0].position.x += 6;
-
+		if (Number(props.pressure.children[4].children[0].position.z.toFixed(1)) === 13.1) {
+			props.pressure.children[4].children[0].position.z -= 10;
+			props.pressure.children[4].children[0].position.x += 6;
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

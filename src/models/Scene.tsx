@@ -2,18 +2,21 @@ import { useGLTF } from '@react-three/drei';
 import CriminalJusticeRoom from './CriminalJusticeRoom';
 import RoomNavigation from './RoomNavigation';
 import PhysicalWellbeingRoom from './PhysicalWellbeingRoom';
-import { Dispatch, useEffect } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import { Colors } from '../common/Colors';
 import * as THREE from 'three';
 import ExperienceStart from '../components/ExperienceStart';
+import { isMobile, useMobileOrientation } from 'react-device-detect';
+import PortraitWarning from '../components/PortraitWarning';
 
 interface IScene {
 	setEnebleControlsMovment: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Scene = (props: IScene) => {
+	const { isLandscape } = useMobileOrientation();
+	const [roomNumber, setRoomNumber] = useState<number>(0);
 	const barnahus: any = useGLTF('./Scene/barnahus-draco.glb');
-	console.log(barnahus);
 
 	barnahus.scene.traverse((obj: any) => {
 		if (obj.isMesh) {
@@ -43,6 +46,8 @@ const Scene = (props: IScene) => {
 		const isSecondRoomShown = roomNumber === 2;
 		let backgroundColor;
 		let fontColor;
+
+		setRoomNumber(roomNumber);
 
 		barnahus.scene.visible = isFirstRoomShown;
 		barnahus.nodes.Sound_base_1.visible = isFirstRoomShown;
@@ -89,27 +94,35 @@ const Scene = (props: IScene) => {
 
 	return (
 		<>
-			<ExperienceStart handleRoom={handleRoom} setEnebleControlsMovment={props.setEnebleControlsMovment} />
-			<RoomNavigation
-				arrowPointer={barnahus.nodes.Arrow_2}
-				arrowBody={barnahus.nodes.Arrow_1}
-				arrowText={barnahus.nodes.Arrow_text}
-				position={[-1.45, 0, 4.4]}
-				rotation={[0, 1.57, 0]}
-				roomNumber={1}
-				onClick={handleRoom}
-			/>
-			<PhysicalWellbeingRoom barnahus={barnahus} />
-			<CriminalJusticeRoom room={barnahus.nodes.Criminal_Room} />
-			<RoomNavigation
-				arrowPointer={barnahus.nodes.Arrow_2_1}
-				arrowBody={barnahus.nodes.Arrow_1_1}
-				arrowText={barnahus.nodes.Arrow_text_1}
-				position={[2.43, 0, -1.45]}
-				rotation={[0, 0, 0]}
-				roomNumber={2}
-				onClick={handleRoom}
-			/>
+			{!isLandscape && isMobile ? (
+				<PortraitWarning />
+			) : (
+				<>
+					{roomNumber === 0 && (
+						<ExperienceStart handleRoom={handleRoom} setEnebleControlsMovment={props.setEnebleControlsMovment} />
+					)}
+					<RoomNavigation
+						arrowPointer={barnahus.nodes.Arrow_2}
+						arrowBody={barnahus.nodes.Arrow_1}
+						arrowText={barnahus.nodes.Arrow_text}
+						position={[-1.45, 0, 4.4]}
+						rotation={[0, 1.57, 0]}
+						roomNumber={1}
+						onClick={handleRoom}
+					/>
+					<PhysicalWellbeingRoom barnahus={barnahus} />
+					<CriminalJusticeRoom room={barnahus.nodes.Criminal_Room} />
+					<RoomNavigation
+						arrowPointer={barnahus.nodes.Arrow_2_1}
+						arrowBody={barnahus.nodes.Arrow_1_1}
+						arrowText={barnahus.nodes.Arrow_text_1}
+						position={[2.43, 0, -1.45]}
+						rotation={[0, 0, 0]}
+						roomNumber={2}
+						onClick={handleRoom}
+					/>
+				</>
+			)}
 		</>
 	);
 };

@@ -22,10 +22,6 @@ body,
 	transition: 1s ease-out;
 }
 
-canvas {
-	transition: 4s ease-in;
-}
-
 button {
 	position: absolute;
 	background-color: #bad9ff;
@@ -46,4 +42,31 @@ button:hover {
 	border-radius: 5px;
 	box-shadow: rgba(43, 138, 255, 0.4) 5px 5px, rgba(43, 138, 255, 0.3) 10px 10px, rgba(43, 138, 255, 0.2) 15px 15px,
 		rgba(43, 138, 255, 0.1) 20px 20px, rgba(43, 138, 255, 0.05) 25px 25px;
+}
+
+.container {
+	position: relative;
+	height: 110vh;
+	width: 110vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: -55vh;
+	margin-left: -55vw;
+	background-color: #bad9ff;
+}
+
+label {
+	text-align: center;
+	color: #2b8aff;
+	font-size: 1.4rem;
+	padding: 24px;
+	font-weight: 700;
+	margin-top: -10vh;
+}
+
+svg {
+	fill: #2b8aff;
+	width: 180px;
 }

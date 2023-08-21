@@ -8,7 +8,7 @@ interface IButton {
 const Button = (props: IButton) => {
 	return (
 		<Html>
-			<div className='circle'>
+			<div className='container'>
 				<button hidden={props.hideButton} onClick={props.handleOnClick}>
 					Start journey
 				</button>

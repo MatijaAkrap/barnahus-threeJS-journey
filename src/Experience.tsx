@@ -1,5 +1,6 @@
 import { OrbitControls, OrthographicCamera } from '@react-three/drei';
 import { Suspense, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import Scene from './models/Scene';
 
 const Experience = () => {
@@ -14,13 +15,19 @@ const Experience = () => {
 	return (
 		<>
 			{/* <Perf position='top-left' /> */}
-			<OrthographicCamera makeDefault position={[5, 5, 5]} zoom={window.innerHeight / 5} near={4} far={10} />
+			<OrthographicCamera
+				makeDefault
+				position={[5, 5, 5]}
+				zoom={window.innerHeight / (isMobile ? 4.5 : 5)}
+				near={4}
+				far={10}
+			/>
 			<OrbitControls
 				makeDefault
 				{...controlsProps}
 				enableZoom={enebleControlsMovment}
 				enableRotate={enebleControlsMovment}
-				minZoom={100}
+				minZoom={isMobile ? 50 : 100}
 				maxZoom={1600}
 			/>
 			<ambientLight intensity={0.8} />
