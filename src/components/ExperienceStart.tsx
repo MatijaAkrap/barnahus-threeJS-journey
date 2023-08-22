@@ -1,7 +1,6 @@
 import { Plane } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { Dispatch, useState } from 'react';
-import { isMobile } from 'react-device-detect';
 import { Sounds } from '../common/Sounds';
 import Button from './Button';
 
@@ -27,11 +26,11 @@ const ExperienceStart = (props: IExperienceStart) => {
 			props.setEnebleControlsMovment(true);
 		}, 70);
 
-		backgroundMusic.volume = isMobile ? 0.8 : 0.1;
+		backgroundMusic.volume = 0.1;
 		backgroundMusic.play();
 		backgroundMusic.loop = true;
 		setTimeout(() => {
-			backgroundMusic.volume = isMobile ? 1 : 0.3;
+			backgroundMusic.volume = 0.15;
 		}, 1500);
 
 		setHideButton(true);
