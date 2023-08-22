@@ -8,7 +8,7 @@ import * as THREE from 'three';
 import ExperienceStart from '../components/ExperienceStart';
 
 interface ISceneProps {
-	setEnebleControlsMovment: Dispatch<React.SetStateAction<boolean>>;
+	setEnebleControls: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Scene = (props: ISceneProps) => {
@@ -92,9 +92,7 @@ const Scene = (props: ISceneProps) => {
 
 	return (
 		<>
-			{roomNumber === 0 && (
-				<ExperienceStart handleRoom={handleRoom} setEnebleControlsMovment={props.setEnebleControlsMovment} />
-			)}
+			{roomNumber === 0 && <ExperienceStart handleRoom={handleRoom} setEnebleControls={props.setEnebleControls} />}
 			<RoomNavigation
 				arrowPointer={barnahus.nodes.Arrow_2}
 				arrowBody={barnahus.nodes.Arrow_1}

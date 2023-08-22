@@ -6,7 +6,7 @@ import Button from './Button';
 
 interface IExperienceStart {
 	handleRoom: (room: number) => void;
-	setEnebleControlsMovment: Dispatch<React.SetStateAction<boolean>>;
+	setEnebleControls: Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ExperienceStart = (props: IExperienceStart) => {
@@ -23,7 +23,7 @@ const ExperienceStart = (props: IExperienceStart) => {
 
 		setTimeout(() => {
 			props.handleRoom(1);
-			props.setEnebleControlsMovment(true);
+			props.setEnebleControls(true);
 		}, 70);
 
 		backgroundMusic.volume = 0.1;

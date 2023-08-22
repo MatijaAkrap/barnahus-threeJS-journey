@@ -4,7 +4,7 @@ import { isMobile } from 'react-device-detect';
 import Scene from './models/Scene';
 
 const Experience = () => {
-	const [enebleControlsMovment, setEnebleControlsMovment] = useState<boolean>(false);
+	const [enebleControls, setEnebleControls] = useState<boolean>(false);
 	const [cameraZoom, setCameraZoom] = useState<number>(window.innerHeight / (isMobile ? 4.5 : 5));
 
 	const controlsProps = {
@@ -31,8 +31,7 @@ const Experience = () => {
 			<OrbitControls
 				makeDefault
 				{...controlsProps}
-				enableZoom={enebleControlsMovment}
-				enableRotate={enebleControlsMovment}
+				enabled={enebleControls}
 				minZoom={isMobile ? 50 : 100}
 				maxZoom={1600}
 			/>
@@ -51,7 +50,7 @@ const Experience = () => {
 				shadow-camera-right={2}
 			/>
 			<Suspense fallback={null}>
-				<Scene setEnebleControlsMovment={setEnebleControlsMovment} />
+				<Scene setEnebleControls={setEnebleControls} />
 			</Suspense>
 		</>
 	);
