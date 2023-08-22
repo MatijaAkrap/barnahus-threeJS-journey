@@ -1,14 +1,14 @@
-import { Html } from '@react-three/drei';
+import { useMobileOrientation } from 'react-device-detect';
 import { ReactComponent as PortraitWarningIcon } from './../Images/PortraitWarningIcon.svg';
 
 const PortraitWarning = () => {
+	const { isPortrait } = useMobileOrientation();
+
 	return (
-		<Html>
-			<div className='container'>
-				<label>To use expirence please turn your phone to lanscape mode</label>
-				<PortraitWarningIcon />
-			</div>
-		</Html>
+		<div className={`portrait-warning-container ${isPortrait ? 'show' : 'hide'}`}>
+			<label>To use expirence please turn your phone to lanscape mode</label>
+			<PortraitWarningIcon />
+		</div>
 	);
 };
 

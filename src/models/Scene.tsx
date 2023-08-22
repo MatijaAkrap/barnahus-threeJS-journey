@@ -6,15 +6,12 @@ import { Dispatch, useEffect, useState } from 'react';
 import { Colors } from '../common/Colors';
 import * as THREE from 'three';
 import ExperienceStart from '../components/ExperienceStart';
-import { isMobile, useMobileOrientation } from 'react-device-detect';
-import PortraitWarning from '../components/PortraitWarning';
 
-interface IScene {
+interface ISceneProps {
 	setEnebleControlsMovment: Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Scene = (props: IScene) => {
-	const { isLandscape } = useMobileOrientation();
+const Scene = (props: ISceneProps) => {
 	const [roomNumber, setRoomNumber] = useState<number>(0);
 	const barnahus: any = useGLTF('./Scene/barnahus-draco.glb');
 
@@ -89,40 +86,35 @@ const Scene = (props: IScene) => {
 	useEffect(() => {
 		barnahus.nodes.Criminal_Room.visible = false;
 		handleRoom(0);
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<>
-			{!isLandscape && isMobile ? (
-				<PortraitWarning />
-			) : (
-				<>
-					{roomNumber === 0 && (
-						<ExperienceStart handleRoom={handleRoom} setEnebleControlsMovment={props.setEnebleControlsMovment} />
-					)}
-					<RoomNavigation
-						arrowPointer={barnahus.nodes.Arrow_2}
-						arrowBody={barnahus.nodes.Arrow_1}
-						arrowText={barnahus.nodes.Arrow_text}
-						position={[-1.45, 0, 4.4]}
-						rotation={[0, 1.57, 0]}
-						roomNumber={1}
-						onClick={handleRoom}
-					/>
-					<PhysicalWellbeingRoom barnahus={barnahus} />
-					<CriminalJusticeRoom room={barnahus.nodes.Criminal_Room} />
-					<RoomNavigation
-						arrowPointer={barnahus.nodes.Arrow_2_1}
-						arrowBody={barnahus.nodes.Arrow_1_1}
-						arrowText={barnahus.nodes.Arrow_text_1}
-						position={[2.43, 0, -1.45]}
-						rotation={[0, 0, 0]}
-						roomNumber={2}
-						onClick={handleRoom}
-					/>
-				</>
+			{roomNumber === 0 && (
+				<ExperienceStart handleRoom={handleRoom} setEnebleControlsMovment={props.setEnebleControlsMovment} />
 			)}
+			<RoomNavigation
+				arrowPointer={barnahus.nodes.Arrow_2}
+				arrowBody={barnahus.nodes.Arrow_1}
+				arrowText={barnahus.nodes.Arrow_text}
+				position={[-1.45, 0, 4.4]}
+				rotation={[0, 1.57, 0]}
+				roomNumber={1}
+				onClick={handleRoom}
+			/>
+			<PhysicalWellbeingRoom barnahus={barnahus} />
+			<CriminalJusticeRoom room={barnahus.nodes.Criminal_Room} />
+			<RoomNavigation
+				arrowPointer={barnahus.nodes.Arrow_2_1}
+				arrowBody={barnahus.nodes.Arrow_1_1}
+				arrowText={barnahus.nodes.Arrow_text_1}
+				position={[2.43, 0, -1.45]}
+				rotation={[0, 0, 0]}
+				roomNumber={2}
+				onClick={handleRoom}
+			/>
 		</>
 	);
 };

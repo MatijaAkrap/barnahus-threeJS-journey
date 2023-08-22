@@ -34,7 +34,7 @@ const Experience = () => {
 			<directionalLight
 				castShadow
 				position={[7, 5, 6]}
-				intensity={1}
+				intensity={1.15}
 				shadow-mapSize-width={1024}
 				shadow-mapSize-height={1024}
 				shadow-camera-near={6}
