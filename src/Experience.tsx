@@ -1,27 +1,33 @@
 import { OrbitControls, OrthographicCamera } from '@react-three/drei';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import Scene from './models/Scene';
 
 const Experience = () => {
-	const [enebleControlsMovment, setEnebleControlsMovment] = useState(false);
+	const [enebleControlsMovment, setEnebleControlsMovment] = useState<boolean>(false);
+	const [cameraZoom, setCameraZoom] = useState<number>(window.innerHeight / (isMobile ? 4.5 : 5));
 
 	const controlsProps = {
 		maxPolarAngle: Math.PI / 2,
 		minAzimuthAngle: -Math.PI / 2000,
 		maxAzimuthAngle: Math.PI / 2
 	};
+	const handleResize = () => {
+		setCameraZoom(window.innerHeight / (isMobile ? 4.5 : 5));
+	};
+
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
 
 	return (
 		<>
 			{/* <Perf position='top-left' /> */}
-			<OrthographicCamera
-				makeDefault
-				position={[5, 5, 5]}
-				zoom={window.innerHeight / (isMobile ? 4.5 : 5)}
-				near={4}
-				far={10}
-			/>
+			<OrthographicCamera makeDefault position={[5, 5, 5]} zoom={cameraZoom} near={4} far={10} />
 			<OrbitControls
 				makeDefault
 				{...controlsProps}
