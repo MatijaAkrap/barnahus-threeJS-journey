@@ -30,7 +30,7 @@ const ExperienceStart = (props: IExperienceStart) => {
 		backgroundMusic.play();
 		backgroundMusic.loop = true;
 		setTimeout(() => {
-			backgroundMusic.volume = 0.15;
+			backgroundMusic.volume = 0.1;
 		}, 1500);
 
 		setHideButton(true);
