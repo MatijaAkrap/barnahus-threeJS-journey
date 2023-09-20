@@ -6,7 +6,7 @@ const PortraitWarning = () => {
 
 	return (
 		<div className={`portrait-warning-container ${isPortrait ? 'show' : 'hide'}`}>
-			<label>To use experience please turn your phone to lanscape mode</label>
+			<label>To use experience please turn your phone to landscape mode</label>
 			<PortraitWarningIcon />
 		</div>
 	);
